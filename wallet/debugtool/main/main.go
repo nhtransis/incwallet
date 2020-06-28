@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/incognitochain/incognito-chain/privacy/debugtool"
 	"github.com/incognitochain/incognito-chain/wallet"
+	"github.com/incwallet/wallet/debugtool"
 	"os"
 	"strconv"
 )
