@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/incognitochain/incognito-chain/wallet"
-	"github.com/incwallet/wallet/debugtool"
+	debugtool "github.com/incwallet/wallet/debugtool"
 	"os"
 	"strconv"
 )

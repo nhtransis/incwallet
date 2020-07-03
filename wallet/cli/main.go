@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "cli/cmd"
+import "github.com/incwallet/wallet/cli/cmd"
 
 func main() {
 	cmd.Execute()
