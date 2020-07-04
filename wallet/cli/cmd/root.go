@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
+	"strconv"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
@@ -40,6 +41,53 @@ to quickly create a Cobra application.`,
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
 }
+var convertCmd = &cobra.Command{
+	Use:   "convert",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) != 0 {
+			index, err := strconv.ParseInt(args[0], 10, 32)
+			if err != nil {
+				panic(err)
+			}
+			ConvertCoinVersion(tool, privateKeys[index])
+
+		} else {
+			ConvertCoinVersion(tool,privateKeys[0])
+		}
+	},
+}
+var balanceCmd = &cobra.Command{
+	Use:   "balance",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+go get -u github.com/spf13/cobra/cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) != 0 {
+			index, err := strconv.ParseInt(args[0], 10, 32)
+			if err != nil {
+				panic(err)
+			}
+			GetPRVBalance(tool, privateKeys[index])
+
+		} else {
+			GetPRVBalance(tool,privateKeys[0])
+		}
+
+
+	},
+}
+
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
@@ -52,7 +100,9 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-
+	//init command
+	rootCmd.AddCommand(balanceCmd)
+	rootCmd.AddCommand(convertCmd)
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.

@@ -36,12 +36,7 @@ to quickly create a Cobra application.`,
 		GetRawMempool(tool)
 	},
 }
-func GetRawMempool(tool *debugtool.DebugTool) {
-	fmt.Println("========== GET RAW MEMPOOL ==========")
-	b, _ := tool.GetRawMempool()
-	fmt.Println(string(b))
-	fmt.Println("========== END GET RAW MEMPOOL ==========")
-}
+
 func init() {
 	rootCmd.AddCommand(mempoolCmd)
 
